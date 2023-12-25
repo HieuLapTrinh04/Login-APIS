@@ -1,5 +1,10 @@
 .App {
+  display: flex;
   text-align: center;
+}
+#image_header {
+  width: 10rem;
+  height: 10rem;
 }
 
 .App-logo {
