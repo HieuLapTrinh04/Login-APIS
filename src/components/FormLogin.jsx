@@ -1,19 +1,43 @@
 import { useState } from "react";
-const FormLogin = ({ onSubmitUserName, onSubmitPassword}) => {
+const FormLogin = () => {
+  const User = [
+    {
+      userName: "minhhieu",
+      password: "111111",
+    },
+    {
+      userName: "buihieu",
+      password: "222222",
+    },
+  ];
+
   const [userName, setUserName] = useState("");
-  const [password, setPassword] = useState('');
+  const [password, setPassword] = useState("");
 
   const handleSubmit = (event) => {
     event.preventDefault();
-    onSubmitUserName(userName)
-    onSubmitPassword(password)
+
+    checkAccout();
   };
   const handleChangeUserName = (event) => {
     setUserName(event.target.value);
   };
   const handleChangePassword = (event) => {
-    setPassword(event.target.value)
-  }
+    setPassword(event.target.value);
+  };
+
+  const checkAccout = () => {
+    const index = User.findIndex(e => e.userName === userName && e.password === password);
+    if (index === -1) {
+      alert("Sai tên hoặc mật khẩu !!");
+      return
+    }
+    window.location.href = "/about";
+    //  // eslint-disable-next-line no-undef
+    //  if (userName !== User[i] || password !== User[i]) {
+    //   alert("Sai tên hoặc mật khẩu !!");
+    // } else window.Location.href("/about");
+  };
 
   return (
     <form onSubmit={handleSubmit}>
@@ -51,7 +75,6 @@ const FormLogin = ({ onSubmitUserName, onSubmitPassword}) => {
           <button
             type="submit"
             className="rounded-full w-64 h-12 bg-emerald-400 mt-7 mb-7 hover:bg-emerald-500"
-            // onClick={() => console.log(userName)}
           >
             Login
           </button>
